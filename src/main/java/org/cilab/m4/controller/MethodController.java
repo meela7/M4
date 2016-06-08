@@ -120,9 +120,7 @@ public class MethodController {
 				inst.setMethodType(map.get("methodType"));
 				inst.setProductModel(map.get("productModel"));
 				inst.setManufacturer(map.get("manufacturer"));
-				inst.setSerialNumber(map.get("serialNumber"));
-				inst.setLatitude(Float.parseFloat(map.get("latitude")));
-				inst.setLongitude(Float.parseFloat(map.get("longitude")));
+				inst.setMeasureType(map.get("measureType"));
 				inst.setDescription(map.get("description"));
 				createdID = instrumentService.newInstance(inst);
 			}else if(map.get("methodType").equals("prediction")){

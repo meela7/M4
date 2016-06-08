@@ -14,9 +14,13 @@ public class Instrument extends Method{
 
 	private String Manufacturer;
 	private String ProductModel;
-	private String SerialNumber;
-	private float Latitude;
-	private float Longitude;
+	private String MeasureType;
+	public String getMeasureType() {
+		return MeasureType;
+	}
+	public void setMeasureType(String measureType) {
+		MeasureType = measureType;
+	}
 	private String Description;
 
 	public String getManufacturer() {
@@ -31,24 +35,7 @@ public class Instrument extends Method{
 	public void setProductModel(String productModel) {
 		ProductModel = productModel;
 	}
-	public String getSerialNumber() {
-		return SerialNumber;
-	}
-	public void setSerialNumber(String serialNumber) {
-		SerialNumber = serialNumber;
-	}
-	public float getLatitude() {
-		return Latitude;
-	}
-	public void setLatitude(float latitude) {
-		Latitude = latitude;
-	}
-	public float getLongitude() {
-		return Longitude;
-	}
-	public void setLongitude(float longitude) {
-		Longitude = longitude;
-	}
+	
 	public String getDescription() {
 		return Description;
 	}

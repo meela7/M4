@@ -11,14 +11,8 @@
         <property name="ProductModel" type="java.lang.String">
             <column name="ProductModel" />
         </property>
-        <property name="SerialNumber" type="java.lang.String">
-            <column name="SerialNumber" />
-        </property>
-        <property name="Latitude" type="float">
-            <column name="Latitude" />
-        </property>
-        <property name="Longitude" type="float">
-            <column name="Longitude" />
+        <property name="MeasureType" type="java.lang.String">
+            <column name="MeasureType" />
         </property>
         <property name="Description" type="java.lang.String">
             <column name="Description" />
