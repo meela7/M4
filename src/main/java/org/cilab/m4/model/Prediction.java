@@ -13,7 +13,7 @@ public class Prediction extends Method{
 	 */
 
 	private String ModelingMethod;
-	private String ExcuteEnvironment;
+	private String ExecuteEnvironment;
 	private String Creator;
 	private String CreatedDate;
 	private String Description;
@@ -24,11 +24,11 @@ public class Prediction extends Method{
 	public void setModelingMethod(String modelingMethod) {
 		ModelingMethod = modelingMethod;
 	}
-	public String getExcuteEnvironment() {
-		return ExcuteEnvironment;
+	public String getExecuteEnvironment() {
+		return ExecuteEnvironment;
 	}
-	public void setExcuteEnvironment(String excuteEnvironment) {
-		ExcuteEnvironment = excuteEnvironment;
+	public void setExecuteEnvironment(String executeEnvironment) {
+		ExecuteEnvironment = executeEnvironment;
 	}
 	public String getCreator() {
 		return Creator;

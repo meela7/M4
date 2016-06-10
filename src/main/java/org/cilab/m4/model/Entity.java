@@ -16,6 +16,7 @@ public class Entity {
 	private int EntityID;
 	private String EntityType;
 	private String EntityName;
+	
 	public int getEntityID() {
 		return EntityID;
 	}

@@ -104,7 +104,7 @@ public class PredictionController {
 	@RequestMapping(value = "/predictions/new", method = RequestMethod.POST)
 	public ResponseEntity<Boolean> create(@RequestBody Prediction pred) {
 		// check if Prediction contains the Not Null field in the database.
-
+		pred.setMethodType("prediction");
 		boolean createdID = predictionService.newInstance(pred);
 		return new ResponseEntity<Boolean>(createdID, HttpStatus.CREATED);
 	}

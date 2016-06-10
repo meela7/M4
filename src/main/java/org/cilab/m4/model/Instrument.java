@@ -15,14 +15,14 @@ public class Instrument extends Method{
 	private String Manufacturer;
 	private String ProductModel;
 	private String MeasureType;
+	private String Description;
+	
 	public String getMeasureType() {
 		return MeasureType;
 	}
 	public void setMeasureType(String measureType) {
 		MeasureType = measureType;
 	}
-	private String Description;
-
 	public String getManufacturer() {
 		return Manufacturer;
 	}

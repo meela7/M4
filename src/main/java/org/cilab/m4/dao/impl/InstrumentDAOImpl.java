@@ -38,7 +38,7 @@ public class InstrumentDAOImpl implements InstrumentDAO {
 	@Override
 	@Transactional
 	public boolean create(Instrument inst) {		
-		logger.info("Create a Instrument Named {}", inst.getMethodName());
+		logger.info("=====> Create a Instrument Type is {}", inst.getMethodType());
 		try {
 			sessionFactory.getCurrentSession().save(inst);
 			

@@ -105,7 +105,7 @@ public class InstrumentController {
 	@RequestMapping(value = "/instruments/new", method = RequestMethod.POST)
 	public ResponseEntity<Boolean> create(@RequestBody Instrument instrument, UriComponentsBuilder ucBuilder) {
 		// check if Instrument contains the Not Null field in the database.
-
+		instrument.setMethodType("instrument");
 		boolean createdID = instrumentService.newInstance(instrument);
 		return new ResponseEntity<Boolean>(createdID, HttpStatus.CREATED);
 	}
@@ -126,14 +126,19 @@ public class InstrumentController {
 	@RequestMapping(value = "/instruments/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Boolean> update(@RequestBody Instrument inst, @PathVariable("id") int instID) {
 		
-		Instrument oldInstrument = this.instrumentService.readInstance(instID);
-		if (oldInstrument == null) {
-			logger.info("Instrument Instance Resource of ID: {}, not found.", instID);
-			return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
-		}
-		
-		// set the null of Instrument with oldInstrument
+		logger.info("Updating Instrument Instance Resource of ID: {} ...", inst.getMethodID());
 
+		if (instID != inst.getMethodID()) {
+			logger.info("Instrument Instance Resource of ID: {} , {} doesn't match.", instID, inst.getMethodID());
+			return new ResponseEntity<Boolean>(false, HttpStatus.BAD_REQUEST);
+		} else{
+			Instrument oldInstrument = this.instrumentService.readInstance(instID);
+			if (oldInstrument == null) {
+				logger.info("Instrument Instance Resource of ID: {}, not found.", instID);
+				return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
+			}
+		}
+		// set the null of Instrument with oldInstrument
 		Boolean res = this.instrumentService.updateInstance(inst);
 		if (res)
 			return new ResponseEntity<Boolean>(res, HttpStatus.OK);

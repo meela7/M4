@@ -19,8 +19,8 @@
         <property name="Creator" type="java.lang.String">
             <column name="Creator" />
         </property>
-        <property name="ExcuteEnvironment" type="java.lang.String">
-            <column name="ExcuteEnvironment" />
+        <property name="ExecuteEnvironment" type="java.lang.String">
+            <column name="ExecuteEnvironment" />
         </property>
     </joined-subclass>
 </hibernate-mapping>

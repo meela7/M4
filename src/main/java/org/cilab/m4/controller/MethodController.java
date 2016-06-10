@@ -7,12 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.cilab.m4.model.Instrument;
 import org.cilab.m4.model.Method;
-import org.cilab.m4.model.Prediction;
-import org.cilab.m4.service.InstrumentService;
 import org.cilab.m4.service.MethodService;
-import org.cilab.m4.service.PredictionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -47,10 +43,10 @@ public class MethodController {
 
 	@Autowired
 	private MethodService methodService;
-	@Autowired
-	private InstrumentService instrumentService;
-	@Autowired
-	private PredictionService predictionService;
+//	@Autowired
+//	private InstrumentService instrumentService;
+//	@Autowired
+//	private PredictionService predictionService;
 
 
 	// -------------------- Read and Search Method Collection Resource --------------------
@@ -111,31 +107,30 @@ public class MethodController {
 
 	// -------------------- Create a Method Instance Resource ------------------
 	@RequestMapping(value = "/methods/new", method = RequestMethod.POST)
-	public ResponseEntity<Boolean> create(@RequestBody Map<String, String> map){
-		boolean createdID = false;
-		if(map.containsKey("methodType")){
-			if(map.get("methodType").equals("instrument")){
-				Instrument inst = new Instrument();
-				inst.setMethodName(map.get("methodName"));
-				inst.setMethodType(map.get("methodType"));
-				inst.setProductModel(map.get("productModel"));
-				inst.setManufacturer(map.get("manufacturer"));
-				inst.setMeasureType(map.get("measureType"));
-				inst.setDescription(map.get("description"));
-				createdID = instrumentService.newInstance(inst);
-			}else if(map.get("methodType").equals("prediction")){
-				Prediction pred = new Prediction();
-				pred.setMethodName(map.get("methodName"));
-				pred.setMethodType(map.get("methodType"));
-				pred.setModelingMethod(map.get("modelingMethod"));
-				pred.setExcuteEnvironment(map.get("excuteEnvironment"));
-				pred.setCreator(map.get("creator"));
-				pred.setCreatedDate(map.get("createdDate"));
-				pred.setDescription(map.get("description"));
-				createdID = predictionService.newInstance(pred);
-			}
-		}
-		
+	public ResponseEntity<Boolean> create(@RequestBody Method method){
+		boolean createdID = this.methodService.newInstance(method);
+//		if(map.containsKey("methodType")){
+//			if(map.get("methodType").equals("instrument")){
+//				Instrument inst = new Instrument();
+//				inst.setMethodName(map.get("methodName"));
+//				inst.setMethodType(map.get("methodType"));
+//				inst.setProductModel(map.get("productModel"));
+//				inst.setManufacturer(map.get("manufacturer"));
+//				inst.setMeasureType(map.get("measureType"));
+//				inst.setDescription(map.get("description"));
+//				createdID = instrumentService.newInstance(inst);
+//			}else if(map.get("methodType").equals("prediction")){
+//				Prediction pred = new Prediction();
+//				pred.setMethodName(map.get("methodName"));
+//				pred.setMethodType(map.get("methodType"));
+//				pred.setModelingMethod(map.get("modelingMethod"));
+//				pred.setExecuteEnvironment(map.get("excuteEnvironment"));
+//				pred.setCreator(map.get("creator"));
+//				pred.setCreatedDate(map.get("createdDate"));
+//				pred.setDescription(map.get("description"));
+//				createdID = predictionService.newInstance(pred);
+//			}
+//		}		
 		return new ResponseEntity<Boolean>(createdID, HttpStatus.CREATED);
 	}
 

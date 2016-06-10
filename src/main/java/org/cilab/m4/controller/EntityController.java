@@ -102,19 +102,10 @@ public class EntityController {
 
 	// -------------------- Create a Entity Instance Resource ------------------
 	@RequestMapping(value = "/entities/new", method = RequestMethod.POST)
-	public ResponseEntity<Boolean> create(@RequestBody Map<String, String> map){
-		boolean createdID = false;
-		if(map.containsKey("entityType")){
-			if(map.get("entityType").equals("entity")){
-				Entity entity = new Entity();
-				entity.setEntityName(map.get("entityName"));
-				entity.setEntityType(map.get("entityType"));
-				
-				createdID = entityService.newInstance(entity);
-			}
-		}else
-			logger.info("{}","");
+	public ResponseEntity<Boolean> create(@RequestBody Entity entity){
 		
+		
+		boolean createdID = this.entityService.newInstance(entity);		
 		return new ResponseEntity<Boolean>(createdID, HttpStatus.CREATED);
 	}
 

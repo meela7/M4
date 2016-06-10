@@ -12,19 +12,19 @@
             <column name="DataSetName" />
         </property>
         <many-to-one name="Site" class="org.cilab.m4.model.Site" fetch="join">
-            <column name="Site" />
+            <column name="SiteID" />
         </many-to-one>
         <many-to-one name="Source" class="org.cilab.m4.model.Source" fetch="join">
-            <column name="Source" />
+            <column name="SourceID" />
         </many-to-one>
         <many-to-one name="Variable" class="org.cilab.m4.model.Variable" fetch="join">
-            <column name="Variable" />
+            <column name="VariableID" />
         </many-to-one>
         <many-to-one name="Method" class="org.cilab.m4.model.Method" fetch="join">
-            <column name="Method" />
+            <column name="MethodID" />
         </many-to-one>
         <many-to-one name="Entity" class="org.cilab.m4.model.Entity" fetch="join">
-            <column name="Entity" />
+            <column name="EntityID" />
         </many-to-one>
         <property name="StartDate" type="java.lang.String">
             <column name="StartDate" />
