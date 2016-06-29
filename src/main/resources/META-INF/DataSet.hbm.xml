@@ -4,9 +4,9 @@
 <!-- Generated 2016. 5. 25 ???? 10:43:31 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="org.cilab.m4.model.DataSet" table="DataSet">
-        <id name="DataSetID" type="java.lang.String">
+        <id name="DataSetID" type="int">
             <column name="DataSetID" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="DataSetName" type="java.lang.String">
             <column name="DataSetName" />
@@ -26,11 +26,11 @@
         <many-to-one name="Entity" class="org.cilab.m4.model.Entity" fetch="join">
             <column name="EntityID" />
         </many-to-one>
-        <property name="StartDate" type="java.lang.String">
-            <column name="StartDate" />
+        <property name="StartDateTime" type="java.lang.String">
+            <column name="StartDateTime" />
         </property>
-        <property name="EndDate" type="java.lang.String">
-            <column name="EndDate" />
+        <property name="EndDateTime" type="java.lang.String">
+            <column name="EndDateTime" />
         </property>
     </class>
 </hibernate-mapping>

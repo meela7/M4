@@ -32,7 +32,7 @@ public class DataSetServiceImpl implements DataSetService {
 	}
 
 	@Override
-	public DataSet readInstance(String dataSetID) {
+	public DataSet readInstance(int dataSetID) {
 		return this.dataSetDao.read(dataSetID);
 	}
 
@@ -42,7 +42,7 @@ public class DataSetServiceImpl implements DataSetService {
 	}
 
 	@Override
-	public boolean deleteInstance(String dataSetID) {
+	public boolean deleteInstance(int dataSetID) {
 		return this.dataSetDao.delete(dataSetID);
 	}
 

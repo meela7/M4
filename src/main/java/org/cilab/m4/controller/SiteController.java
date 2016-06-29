@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -119,7 +120,8 @@ public class SiteController {
 
 	// -------------------- Read a Site Instance Resource --------------------
 	@RequestMapping(value = "/sites/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Site> read(@PathVariable("id") int siteID) {
+	public ResponseEntity<Site> read(@PathVariable("id") int siteID, @RequestHeader(value="Authorization") String userAgent) {
+		logger.info("User Info: {} ...", userAgent);
 		logger.info("Reading Method Instance Resource of ID: {} ...", siteID);
 		Site site = this.siteService.readInstance(siteID);
 		if (site == null) {

@@ -18,9 +18,9 @@ public interface DataSetService {
 	 * Copyright(c) 2016 by CILAB All right reserved.
 	 */
 	public boolean newInstance(DataSet stream);
-	public DataSet readInstance(String streamID);
+	public DataSet readInstance(int streamID);
 	public boolean updateInstance(DataSet stream);
-	public boolean deleteInstance(String streamID);	
+	public boolean deleteInstance(int streamID);	
 	public List<DataSet> readCollection();
 	
 	public boolean isInstanceExist(int siteID, int entityID, int variableID, int methodID, int sourceID);

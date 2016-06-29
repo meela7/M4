@@ -13,11 +13,11 @@
         <property name="Description" type="java.lang.String">
             <column name="Description" />
         </property>
-        <property name="CreatedDate" type="java.lang.String">
-            <column name="CreatedDate" />
+        <property name="CreatedAt" type="java.lang.String">
+            <column name="CreatedAt" />
         </property>
-        <property name="Creator" type="java.lang.String">
-            <column name="Creator" />
+        <property name="CreatedBy" type="java.lang.String">
+            <column name="CreatedBy" />
         </property>
         <property name="ExecuteEnvironment" type="java.lang.String">
             <column name="ExecuteEnvironment" />

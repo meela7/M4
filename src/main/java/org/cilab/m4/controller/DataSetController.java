@@ -111,7 +111,7 @@ public class DataSetController {
 
 	// -------------------- Read a DataSet Instance Resource --------------------
 	@RequestMapping(value = "/dataSets/{id}", method = RequestMethod.GET)
-	public ResponseEntity<DataSet> read(@PathVariable("id") String dataSetID) {
+	public ResponseEntity<DataSet> read(@PathVariable("id") int dataSetID) {
 		logger.info("Reading DataSet Instance Resource of ID: {} ...", dataSetID);
 		DataSet dataSet = this.dataSetService.readInstance(dataSetID);
 		if (dataSet == null) {
@@ -123,7 +123,7 @@ public class DataSetController {
 
 	// -------------------- Update a DataSet Instance Resource ------------------
 	@RequestMapping(value = "/dataSets/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Boolean> update(@RequestBody DataSet dataSet, @PathVariable("id") String dataSetID) {
+	public ResponseEntity<Boolean> update(@RequestBody DataSet dataSet, @PathVariable("id") int dataSetID) {
 		logger.info("Updating DataSet Instance Resource of ID: {} ...", dataSet.getDataSetID());
 
 		if (dataSetID != dataSet.getDataSetID()) {
@@ -134,20 +134,19 @@ public class DataSetController {
 			if (oldDataSet == null) {
 				logger.info("DataSet Instance Resource of ID: {}, not found.", dataSetID);
 				return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
+			}else{
+				Boolean res = this.dataSetService.updateInstance(dataSet);
+				if (res)
+					return new ResponseEntity<Boolean>(res, HttpStatus.OK);
+				else
+					return new ResponseEntity<Boolean>(res, HttpStatus.CONFLICT);
 			}
-		}
-		// set the null of DataSet with oldDataSet
-
-		Boolean res = this.dataSetService.updateInstance(dataSet);
-		if (res)
-			return new ResponseEntity<Boolean>(res, HttpStatus.OK);
-		else
-			return new ResponseEntity<Boolean>(res, HttpStatus.CONFLICT);
+		}		
 	}
 
 	// -------------------- Delete a DataSet Instance Resource ------------------
 	@RequestMapping(value = "/dataSets/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Boolean> delete(@PathVariable("id") String dataSetID) {
+	public ResponseEntity<Boolean> delete(@PathVariable("id") int dataSetID) {
 		logger.info("Reading & Deleting DataSet Instance Resource of ID: {} ...", dataSetID);
 		DataSet dataSet = this.dataSetService.readInstance(dataSetID);
 		if (dataSet == null) {

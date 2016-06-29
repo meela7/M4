@@ -14,8 +14,8 @@ public class Prediction extends Method{
 
 	private String ModelingMethod;
 	private String ExecuteEnvironment;
-	private String Creator;
-	private String CreatedDate;
+	private String CreatedAt;
+	private String CreatedBy;
 	private String Description;
 
 	public String getModelingMethod() {
@@ -29,18 +29,18 @@ public class Prediction extends Method{
 	}
 	public void setExecuteEnvironment(String executeEnvironment) {
 		ExecuteEnvironment = executeEnvironment;
+	}	
+	public String getCreatedAt() {
+		return CreatedAt;
 	}
-	public String getCreator() {
-		return Creator;
+	public void setCreatedAt(String createdAt) {
+		CreatedAt = createdAt;
 	}
-	public void setCreator(String creator) {
-		Creator = creator;
+	public String getCreatedBy() {
+		return CreatedBy;
 	}
-	public String getCreatedDate() {
-		return CreatedDate;
-	}
-	public void setCreatedDate(String createdDate) {
-		CreatedDate = createdDate;
+	public void setCreatedBy(String createdBy) {
+		CreatedBy = createdBy;
 	}
 	public String getDescription() {
 		return Description;

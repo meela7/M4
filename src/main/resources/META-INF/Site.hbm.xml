@@ -11,9 +11,6 @@
         <property name="SiteName" type="java.lang.String">
             <column name="SiteName" />
         </property>
-        <property name="LandType" type="java.lang.String">
-            <column name="LandType" />
-        </property>
         <property name="Latitude" type="java.lang.String">
             <column name="Latitude" />
         </property>

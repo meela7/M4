@@ -49,7 +49,7 @@ public class DataSetDAOImpl implements DataSetDAO {
 
 	@Override
 	@Transactional
-	public DataSet read(String dataSetID) {
+	public DataSet read(int dataSetID) {
 		return (DataSet) this.sessionFactory.getCurrentSession().get(DataSet.class, dataSetID);
 	}
 
@@ -67,7 +67,7 @@ public class DataSetDAOImpl implements DataSetDAO {
 
 	@Override
 	@Transactional
-	public boolean delete(String dataSetID) {
+	public boolean delete(int dataSetID) {
 		try {
 			Query query = sessionFactory.getCurrentSession().createQuery("DELETE FROM DataSet WHERE DataSetID = :dataSetID");
 			query.setParameter("dataSetID", dataSetID);
@@ -93,10 +93,14 @@ public class DataSetDAOImpl implements DataSetDAO {
 	@Transactional
 	public DataSet getByUniqueKey(int siteID, int entityID, int variableID, int methodID, int sourceID) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("FROM Stream WHERE SiteID = :siteID and EntityID = :entityID");
+		Query query = session.createQuery("FROM DataSet WHERE SiteID = :siteID and EntityID = :entityID "
+				+ " and VariableID = :variableID and MethodID = :methodID and SourceID = :sourceID ");
 		if (siteID != 0) {
 			query.setParameter("siteID", siteID);
 			query.setParameter("entityID", entityID);
+			query.setParameter("variableID", variableID);
+			query.setParameter("methodID", methodID);
+			query.setParameter("sourceID", sourceID);
 		}
 		DataSet stream = (DataSet) query.uniqueResult();
 		return stream;
@@ -106,7 +110,7 @@ public class DataSetDAOImpl implements DataSetDAO {
 	@Transactional
 	public List<DataSet> search(Map<String, String> map) {
 		Session session = sessionFactory.getCurrentSession();
-		String hqlQuery = "FROM Stream WHERE ";
+		String hqlQuery = "FROM DataSet WHERE ";
 		int index = 0;
 		for(String key : map.keySet()){
 			if(index == 0 )
@@ -131,7 +135,7 @@ public class DataSetDAOImpl implements DataSetDAO {
 	@Transactional
 	public List<DataSet> listSearch(Map<String, List<String>> map) {
 		Session session = sessionFactory.getCurrentSession();
-		String hqlQuery = "FROM Stream WHERE ";
+		String hqlQuery = "FROM DataSet WHERE ";
 		
 		// create HQL Statement
 		int index = 0;
@@ -148,7 +152,7 @@ public class DataSetDAOImpl implements DataSetDAO {
 		logger.info("Execute Query: {}", hqlQuery);
 		Query query = session.createQuery(hqlQuery);
 		for(String key : map.keySet()){
-			if(key.equals("MethodID")){
+			if(key.equals("DataSetID")){
 				List<Integer> valueList = new ArrayList<Integer>();
 				for(String value: map.get(key)){
 					valueList.add(Integer.parseInt(value));

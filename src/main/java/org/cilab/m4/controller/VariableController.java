@@ -106,30 +106,32 @@ public class VariableController {
 
 	// -------------------- Create a Variable Instance Resource ------------------
 	@RequestMapping(value = "/variables/new", method = RequestMethod.POST)
-	public ResponseEntity<Boolean> create(@RequestBody Map<String, String> map){
+	public ResponseEntity<Boolean> create(@RequestBody Variable variable){
 				
-		Variable variable = new Variable();
-		variable.setVariableName(map.get("variableName"));
-		Unit unit  = new Unit();
-		if(map.containsKey("unitID")){
-			int unitID = Integer.parseInt(map.get("unitID"));
-			unit  = this.unitService.readInstance(unitID);
-			variable.setUnit(unit);
-		}else if(map.containsKey("unitName")){
-			unit.setUnitName(map.get("unitName"));
-			unit.setUnitNameLong(map.get("unitNameLong"));
-			this.unitService.newInstance(unit);
-			variable.setUnit(this.unitService.getInstanceByUniqueKey((map.get("unitName"))));
-		}
-		
-		variable.setValueType(map.get("valueType"));
-		variable.setDescription(map.get("description"));
-		if(this.variableService.isInstanceExist(variable.getVariableName(), unit.getUnitID())){
-			boolean createdID = variableService.newInstance(variable);		
-		
-			return new ResponseEntity<Boolean>(createdID, HttpStatus.CREATED);
-		}else
+//		Variable variable = new Variable();
+//		variable.setVariableName(map.get("variableName"));
+//		Unit unit  = new Unit();
+//		if(map.containsKey("unitID")){
+//			int unitID = Integer.parseInt(map.get("unitID"));
+//			unit  = this.unitService.readInstance(unitID);
+//			variable.setUnit(unit);
+//		}else if(map.containsKey("unitName")){
+//			unit.setUnitName(map.get("unitName"));
+//			unit.setUnitNameLong(map.get("unitNameLong"));
+//			this.unitService.newInstance(unit);
+//			variable.setUnit(this.unitService.getInstanceByUniqueKey((map.get("unitName"))));
+//		}
+//		
+//		variable.setValueType(map.get("valueType"));
+//		variable.setDescription(map.get("description"));
+		if(this.variableService.isInstanceExist(variable.getVariableName(), variable.getUnit().getUnitID())){
 			return new ResponseEntity<Boolean>(false, HttpStatus.CONFLICT);
+		}else{
+			boolean createdID = variableService.newInstance(variable);		
+			
+			return new ResponseEntity<Boolean>(createdID, HttpStatus.CREATED);
+		}
+			
 	}
 
 	// -------------------- Read a Variable Instance Resource --------------------

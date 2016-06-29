@@ -93,7 +93,7 @@ public class VariableDAOImpl implements VariableDAO {
 	@Transactional
 	public Variable getByUniqueKey(String name, int unitID) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("FROM Variable WHERE VariableName = :variableName and Unit = :unitID");
+		Query query = session.createSQLQuery("SELECT * FROM Variable WHERE VariableName = :variableName and UnitID = :unitID");
 		if (name != null) {
 			query.setParameter("variableName", name);
 			query.setParameter("unitID", unitID);

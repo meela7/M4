@@ -18,9 +18,9 @@ public interface DataSetDAO {
 	 */
 	
 	public boolean create(DataSet dataSet);
-	public DataSet read(String dataSetID);
+	public DataSet read(int dataSetID);
 	public boolean update(DataSet dataSet);
-	public boolean delete(String dataSetID);
+	public boolean delete(int dataSetID);
 	
 	public List<DataSet> list();	
 	public DataSet getByUniqueKey(int siteID, int entityID, int variableID, int methodID, int sourceID);

@@ -13,20 +13,20 @@ public class DataSet {
 	 * Copyright(c) 2016 by CILAB All right reserved.
 	 */
 	
-	private String DataSetID;
+	private int DataSetID;
 	private String DataSetName;
 	private Site Site;
 	private Source Source;
 	private Variable Variable;
 	private Method	Method;
 	private Entity Entity;
-	private String StartDate;
-	private String EndDate;
+	private String StartDateTime;
+	private String EndDateTime;
 	
-	public String getDataSetID() {
+	public int getDataSetID() {
 		return DataSetID;
 	}
-	public void setDataSetID(String dataSetID) {
+	public void setDataSetID(int dataSetID) {
 		DataSetID = dataSetID;
 	}
 	public String getDataSetName() {
@@ -65,16 +65,16 @@ public class DataSet {
 	public void setEntity(Entity entity) {
 		this.Entity = entity;
 	}
-	public String getStartDate() {
-		return StartDate;
+	public String getStartDateTime() {
+		return StartDateTime;
 	}
-	public void setStartDate(String startDate) {
-		this.StartDate = startDate;
+	public void setStartDateTime(String startedAt) {
+		this.StartDateTime = startedAt;
 	}
-	public String getEndDate() {
-		return EndDate;
+	public String getEndDateTime() {
+		return EndDateTime;
 	}
-	public void setEndDate(String endDate) {
-		this.EndDate = endDate;
+	public void setEndDateTime(String endedAt) {
+		this.EndDateTime = endedAt;
 	}	
 }
