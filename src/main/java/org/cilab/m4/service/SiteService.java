@@ -17,14 +17,14 @@ public interface SiteService {
 	 * 
 	 * Copyright(c) 2016 by CILAB All right reserved.
 	 */
-	public boolean newInstance(Site site);
-	public Site readInstance(int siteID);
-	public boolean updateInstance(Site site);
-	public boolean deleteInstance(int siteID);	
-	public List<Site> readCollection();
+	public void newInstance(Site site) throws Exception;
+	public Site readInstance(int siteID) throws Exception;
+	public void updateInstance(Site site) throws Exception;
+	public void deleteInstance(int siteID) throws Exception;	
+	public List<Site> readCollection() throws Exception;
 	
-	public boolean isInstanceExist(String name);
-	public List<Site> search(Map<String, String> map);
-	public List<Site> listSearch(Map<String, List<String>> map);
+	public boolean isInstanceExist(String name) throws Exception;
+	public List<Site> search(Map<String, String> map) throws Exception;
+	public List<Site> listSearch(Map<String, List<String>> map) throws Exception;
 
 }

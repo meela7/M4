@@ -16,6 +16,7 @@ public interface EntityDAO {
 	 * 
 	 * Copyright(c) 2016 by CILAB All right reserved.
 	 */
+	
 	public boolean create(Entity entity);
 	public Entity read(int entityID);
 	public boolean update(Entity entity);

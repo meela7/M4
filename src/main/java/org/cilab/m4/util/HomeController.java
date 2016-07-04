@@ -1,4 +1,4 @@
-package org.cilab.m4;
+package org.cilab.m4.util;
 
 import java.text.DateFormat;
 import java.util.Date;

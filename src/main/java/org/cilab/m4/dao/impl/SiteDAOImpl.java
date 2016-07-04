@@ -6,8 +6,8 @@ import java.util.Map;
 
 import org.cilab.m4.dao.SiteDAO;
 import org.cilab.m4.model.Site;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.slf4j.Logger;
@@ -36,51 +36,35 @@ public class SiteDAOImpl implements SiteDAO {
 	
 	@Override
 	@Transactional
-	public boolean create(Site site) {
-		try {
-			sessionFactory.getCurrentSession().save(site);			
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+	public void create(Site site) throws HibernateException {			
+		sessionFactory.getCurrentSession().save(site);		
 	}
 
 	@Override
 	@Transactional
-	public Site read(int siteID) {
-		return (Site)this.sessionFactory.getCurrentSession().get(Site.class, siteID);
+	public Site read(int siteID) throws HibernateException{
+		return (Site) sessionFactory.getCurrentSession().get(Site.class, siteID);
 	}
 
 	@Override
 	@Transactional
-	public boolean update(Site site) {
-		try {
-			sessionFactory.getCurrentSession().update(site);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+	public void update(Site site) throws HibernateException {		
+		sessionFactory.getCurrentSession().update(site);
 	}
 
 	@Override
 	@Transactional
-	public boolean delete(int siteID) {
-		try {
-			Query query = sessionFactory.getCurrentSession().createQuery("DELETE FROM Site WHERE SiteID = :siteID");
-			query.setParameter("siteID", siteID);
-			query.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+	public void delete(int siteID) throws HibernateException{
+		
+		Query query = sessionFactory.getCurrentSession().createQuery("DELETE FROM Site WHERE SiteID = :siteID");
+		query.setParameter("siteID", siteID);
+		query.executeUpdate();
+		
 	}
 
 	@Override
 	@Transactional
-	public List<Site> list() {
+	public List<Site> list() throws HibernateException {
 		@SuppressWarnings("unchecked")
 		List<Site> siteList = (List<Site>) sessionFactory.getCurrentSession().createCriteria(Site.class)
 				.addOrder(Order.asc("SiteID")).list();
@@ -90,9 +74,8 @@ public class SiteDAOImpl implements SiteDAO {
 
 	@Override
 	@Transactional
-	public Site getByUniqueKey(String name) {
-		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("FROM Site WHERE SiteName = :siteName ");
+	public Site getByUniqueKey(String name)  throws HibernateException{
+		Query query = sessionFactory.getCurrentSession().createQuery("FROM Site WHERE SiteName = :siteName ");
 		if (name != null) {
 			query.setParameter("siteName", name);
 		}
@@ -102,8 +85,7 @@ public class SiteDAOImpl implements SiteDAO {
 
 	@Override
 	@Transactional
-	public List<Site> search(Map<String, String> map) {
-		Session session = sessionFactory.getCurrentSession();
+	public List<Site> search(Map<String, String> map) throws HibernateException {
 		String hqlQuery = "FROM Site WHERE ";
 		
 //		// get all the columns of the Site
@@ -121,15 +103,15 @@ public class SiteDAOImpl implements SiteDAO {
 		int index = 0;
 		for(String key : map.keySet()){
 			if(index == 0 )
-				hqlQuery = hqlQuery + key + " = :" + key ;
+				hqlQuery = hqlQuery + key + " alike :" + key ;
 			else
-				hqlQuery = hqlQuery + " and " + key + " = :" + key ;
+				hqlQuery = hqlQuery + " and " + key + " alike :" + key ;
 			index++;
 		}
 		
 		// execute HQL Query
 		logger.info("Execute Query: {}", hqlQuery);
-		Query query = session.createQuery(hqlQuery);
+		Query query = sessionFactory.getCurrentSession().createQuery(hqlQuery);
 		for(String key : map.keySet()){
 			query.setParameter(key, map.get(key));	// convert type if the values are not String type
 		}
@@ -140,8 +122,8 @@ public class SiteDAOImpl implements SiteDAO {
 
 	@Override
 	@Transactional
-	public List<Site> listSearch(Map<String, List<String>> map) {
-		Session session = sessionFactory.getCurrentSession();
+	public List<Site> listSearch(Map<String, List<String>> map) throws HibernateException {
+		
 		String hqlQuery = "FROM Site WHERE ";
 			
 		// create HQL Statement
@@ -156,7 +138,7 @@ public class SiteDAOImpl implements SiteDAO {
 		
 		// execute HQL Query
 		logger.info("Execute Query: {}", hqlQuery);
-		Query query = session.createQuery(hqlQuery);
+		Query query = sessionFactory.getCurrentSession().createQuery(hqlQuery);
 		for(String key : map.keySet()){
 			if(key.equals("SiteID")){
 				List<Integer> valueList = new ArrayList<Integer>();

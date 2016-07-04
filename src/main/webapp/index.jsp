@@ -51,6 +51,11 @@
 <link href="resources/css/naemp.css" rel="stylesheet">
 <script src="resources/js/naemp.js"></script>
 
+<!-- Stormpath-sdk-AngularJS -->
+<script src="resources/js/angular-ui-router.min.js"></script>
+<script src="resources/js/stormpath-sdk-angularjs.min.js"></script>
+<script src="resources/js/stormpath-sdk-angularjs.tpls.min.js"></script>
+
 </head>
 <body>
 

@@ -21,48 +21,48 @@ public class SiteServiceImpl implements SiteService {
 	 */
 	SiteDAO siteDao;
 	
-	public void setSiteDao(SiteDAO siteDao){
+	public void setSiteDao(SiteDAO siteDao) throws Exception{
 		this.siteDao = siteDao;
 	}
 	@Override
-	public boolean newInstance(Site site) {
-		return this.siteDao.create(site);
+	public void newInstance(Site site) throws Exception {
+		this.siteDao.create(site);
 	}
 
 	@Override
-	public Site readInstance(int siteID) {
+	public Site readInstance(int siteID) throws Exception {
 		return this.siteDao.read(siteID);
 	}
 
 	@Override
-	public boolean updateInstance(Site site) {
-		return this.siteDao.update(site);
+	public void updateInstance(Site site) throws Exception {
+		this.siteDao.update(site);
 	}
 
 	@Override
-	public boolean deleteInstance(int siteID) {
-		return this.siteDao.delete(siteID);
+	public void deleteInstance(int siteID) throws Exception {
+		this.siteDao.delete(siteID);
 	}
 
 	@Override
-	public List<Site> readCollection() {
+	public List<Site> readCollection() throws Exception {
 		return this.siteDao.list();
 	}
 
 	@Override
-	public boolean isInstanceExist(String name) {
+	public boolean isInstanceExist(String name) throws Exception {
 		if(this.siteDao.getByUniqueKey(name) != null)
 			return true;
 		return false;
 	}
 
 	@Override
-	public List<Site> search(Map<String, String> map) {
+	public List<Site> search(Map<String, String> map) throws Exception {
 		return this.siteDao.search(map);
 	}
 
 	@Override
-	public List<Site> listSearch(Map<String, List<String>> map) {
+	public List<Site> listSearch(Map<String, List<String>> map) throws Exception {
 		return this.siteDao.listSearch(map);
 	}
 

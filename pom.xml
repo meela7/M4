@@ -60,7 +60,12 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-
+		<!-- <dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>3.2.5.RELEASE</version>
+		</dependency> -->
+		
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -193,6 +198,35 @@
 			<artifactId>swagger-spring-mvc-ui</artifactId>
 			<version>0.4</version>
 		</dependency>
+
+		<!-- Stormpath SDK -->
+		<dependency>
+			<groupId>com.stormpath.sdk</groupId>
+			<artifactId>stormpath-sdk-api</artifactId>
+			<version>1.0.RC9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.stormpath.sdk</groupId>
+			<artifactId>stormpath-sdk-httpclient</artifactId>
+			<version>1.0.RC9.2</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Spring WebMvc Plugin for Stormpath 
+		<dependency>
+            <groupId>com.stormpath.spring</groupId>
+            <artifactId>stormpath-default-spring-boot-starter</artifactId>
+            <version>1.0.RC6</version>
+        </dependency> -->
+
+		<!-- This next runtime dependency is only necessary if you have a REST 
+			API and you want to secure it with OAuth: 
+		<dependency>
+			<groupId>com.stormpath.sdk</groupId>
+			<artifactId>stormpath-sdk-oauth</artifactId>
+			<version>1.0.RC9.2</version>
+			<scope>runtime</scope>
+		</dependency> -->
 	</dependencies>
 	<build>
 		<plugins>

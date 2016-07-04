@@ -1,5 +1,6 @@
 package org.cilab.m4.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -18,14 +19,14 @@ public interface SiteDAO {
 	 * 
 	 * Copyright(c) 2016 by CILAB All right reserved.
 	 */
-	public boolean create(Site site);
-	public Site read(int siteID);
-	public boolean update(Site site);
-	public boolean delete(int siteID);
+	public void create(Site site) throws SQLException;
+	public Site read(int siteID) throws SQLException;
+	public void update(Site site) throws SQLException;
+	public void delete(int siteID) throws SQLException;
 	
-	public List<Site> list();
-	public Site getByUniqueKey(String name);
-	public List<Site> search(Map<String, String> map);
-	public List<Site> listSearch(Map<String, List<String>> map);
+	public List<Site> list() throws SQLException;
+	public Site getByUniqueKey(String name) throws SQLException;
+	public List<Site> search(Map<String, String> map) throws SQLException;
+	public List<Site> listSearch(Map<String, List<String>> map) throws SQLException;
 
 }

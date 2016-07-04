@@ -11,7 +11,7 @@
  * Copyright(c) 2016 by CILAB All right reserved.
  */
 
-var naempApp = angular.module('naempApp', [ 'ngResource', 'ngRoute',
+var naempApp = angular.module('naempApp', [ 'ngResource', 'ngRoute','ui.router', 'stormpath', 'stormpath.templates',
 		'ngAnimate', 'ui.bootstrap', 'smart-table', 'leaflet-directive', 'ng-fusioncharts']);
 var resourceRoot = 'resources/templates';
 

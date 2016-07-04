@@ -50,7 +50,18 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean>
-
+	
+	<beans:bean id="authService"
+		class="org.cilab.m4.security.AuthenticationServiceImpl">
+	</beans:bean>
+	
+	<beans:bean id="authDao" class="org.cilab.m4.security.AuthDAOImpl">		
+	</beans:bean>
+	<beans:bean id="accountService"
+		class="org.cilab.m4.service.impl.UserServiceImpl">
+		<beans:property name="authDao" ref="authDao" />
+	</beans:bean>
+	
 	<beans:bean id="dataSetDao" class="org.cilab.m4.dao.impl.DataSetDAOImpl">
 		<beans:constructor-arg>
 			<beans:ref bean="sessionFactory" />
